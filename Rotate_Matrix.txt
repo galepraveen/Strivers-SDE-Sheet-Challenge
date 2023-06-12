@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
+{
+   int sr, sc, er, ec, i, prev, curr;
+   sr = sc = 0;
+   er = n-1;
+   ec = m-1;
+
+   while(sr+1 <= er && sc+1 <= ec){
+       prev = mat[sr+1][sc];
+       for(i = sc; i <= ec; ++i){
+           curr = mat[sr][i];
+           mat[sr][i] = prev;
+           prev = curr;
+       }
+       sr++;
+
+       for(i = sr; i <= er; ++i){
+           curr = mat[i][ec];
+           mat[i][ec] = prev;
+           prev = curr;
+       }
+       ec--;
+
+       if(sr <= er){
+        for(i = ec; i >= sc; --i){
+            curr = mat[er][i];
+            mat[er][i] = prev;
+            prev = curr;
+        }
+        er--;
+       }
+
+       if(sc <= ec){
+        for(i = er; i >= sr; --i){
+            curr = mat[i][sc];
+            mat[i][sc] = prev;
+            prev = curr;
+        }
+        sc++;
+       }
+
+   }
+
+}
